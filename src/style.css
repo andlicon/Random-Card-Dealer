@@ -1,1 +1,64 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
+/*
+.carta--trebol {
+    background-image: URL('https://cdn-icons-png.flaticon.com/512/105/105219.png');
+}
+.carta--corazon {
+    background-image: URL('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png');
+}
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: green;
+}
+.container-carta {
+    /* posicion */
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    /* caja */
+    height: 100%;
+    width: 100%;
+}
+.carta {
+    /* posicion */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* caja */
+    width: 15em;
+    height: 20em;
+    /* estilo */
+    border: 1px solid black;
+    border-radius: 1.5em;
+    background-color: white;
+}
+.tipo-carta {
+    /* posicion */
+    position: absolute;
+    /* caja */
+    width: 4em;
+    height: 4em;
+}
+
+.tipo-carta--superior {
+    top: 1em;
+    left: 1em;
+}
+
+.tipo-carta--inferior {
+    bottom: 1em;
+    right: 1em;
+}
+
+.numero-carta {
+    font-size: 3rem;
+    font-weight: bold;
+}
