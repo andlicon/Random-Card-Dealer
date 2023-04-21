@@ -22,8 +22,8 @@ const TIPO_CARTAS = [
 ]
 
 const CONSTANTES_PROGRAMA = {
-  'width': null,
-  'height': null,
+  'width': '',
+  'height': '',
   'cantidadCartas': 1
 }
 
@@ -77,12 +77,8 @@ const renderCarta = (cartasArray) => {
     const divCarta = document.createElement('div');
     divCarta.classList.add('carta');
 
-    if (CONSTANTES_PROGRAMA.width != null) {
-      divCarta.style.width = CONSTANTES_PROGRAMA.width;
-    }
-    if (CONSTANTES_PROGRAMA.height != null) {
-      divCarta.style.width = CONSTANTES_PROGRAMA.height;
-    }
+    divCarta.style.width = CONSTANTES_PROGRAMA.width + "px";
+    divCarta.style.height = CONSTANTES_PROGRAMA.height + "px";
 
     //Div de los simbolos
     for (let j = 0; j < 2; j++) {
@@ -118,7 +114,6 @@ const eventoClickGenerador = () => {
 
 const generarNumerosInputRange = () => {
   const rangesArray = document.querySelectorAll('input[type="range"]');
-  // const indicadoresArray = document.querySelectorAll('input[type="range"] + .range-indicadores');
 
   for (let i = 0; i < rangesArray.length; i++) {
     const range = rangesArray[i];
@@ -173,7 +168,6 @@ const updateConstantes = (e) => {
     CONSTANTES_PROGRAMA.height = target.value;
   }
 
-  console.log(CONSTANTES_PROGRAMA);
 }
 
 window.onload = function () {

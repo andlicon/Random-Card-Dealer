@@ -24,8 +24,8 @@ body {
     justify-content: center;
     align-items: center;
     /* caja */
-    width: 15em;
-    height: 20em;
+    width: 240px;
+    height: 320px;
     /* estilo */
     border: 1px solid black;
     border-radius: 1.5em;
