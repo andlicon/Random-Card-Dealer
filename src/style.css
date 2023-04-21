@@ -68,6 +68,12 @@ body {
 }
 .menu-opciones {
     display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+
+    margin-bottom: 1em;
 }
 .sobrepuestos {
     display: flex;
