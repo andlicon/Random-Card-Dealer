@@ -4,8 +4,6 @@
     box-sizing: border-box;
 }
 body {
-    height: 100vh;
-    width: 100vw;
     background-color: green;
 }
 .container-carta {
@@ -66,4 +64,20 @@ body {
 .numero-carta {
     font-size: 3rem;
     font-weight: bold;
+}
+.menu-opciones {
+    display: flex;
+}
+.sobrepuestos {
+    display: flex;
+    flex-flow: column nowrap;
+}
+label {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2px;
+}
+input[type="range"] + .range-indicadores {
+    display: flex;
+    justify-content: space-between;
 }
