@@ -160,6 +160,10 @@ const inicializarInputsSoloNumeros = () => {
   }
 }
 
+const updateConstantes = () => {
+
+}
+
 window.onload = function () {
   //Inicializando los elementos 
   generarNumerosInputRange();
@@ -167,9 +171,24 @@ window.onload = function () {
 
   renderCarta(generarCartaAleatoria());
 
+  //cambiar constantes del programa
+  const contenedorModificadores = document.querySelector('#menuOpciones');
+  contenedorModificadores.addEventListener('change', (e) => {
+    const target = e.target
+
+    if (target.id == 'cantidad') {
+      CONSTANTES_PROGRAMA.cantidadCartas = target.value;
+    }
+    if (target.id == 'width') {
+      CONSTANTES_PROGRAMA.width = target.value;
+    }
+    if (target.id == 'height') {
+      CONSTANTES_PROGRAMA = target.value;
+    }
+  });
+
+  //Generar cartas al click
   const generador = document.querySelector('#generador');
   generador.addEventListener('click', eventoClickGenerador);
-
-
 
 };
