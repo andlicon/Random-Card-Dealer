@@ -40,57 +40,68 @@ const convertirNumeroCartaValido = (numero) => {
   return numero;
 }
 
-const generarCartaAleatoria = () => {
-  const aleatorioTipoCarta = Math.floor(Math.random() * TIPO_CARTAS.length);
-  const tipoCarta = getTipoCarta(aleatorioTipoCarta);
+const generarCartaAleatoria = (cantidad) => {
+  const cartasArray = [];
 
-  const aleatorioNumeroCarta = Math.floor(Math.random() * 12) + 1;
-  const numeroCarta = convertirNumeroCartaValido(aleatorioNumeroCarta);
+  for (let i = 0; i < cantidad; i++) {
+    const aleatorioTipoCarta = Math.floor(Math.random() * TIPO_CARTAS.length);
+    const tipoCarta = getTipoCarta(aleatorioTipoCarta);
 
-  if (tipoCarta == null || numeroCarta == null) {
-    return 'ERROR AL GENERAR CARTA';
+    const aleatorioNumeroCarta = Math.floor(Math.random() * 12) + 1;
+    const numeroCarta = convertirNumeroCartaValido(aleatorioNumeroCarta);
+
+    if (tipoCarta == null || numeroCarta == null) {
+      return 'ERROR AL GENERAR CARTA';
+    }
+
+    const carta = tipoCarta;
+    carta['numero'] = numeroCarta;
+
+    cartasArray.push(carta);
   }
 
-  const carta = tipoCarta;
-  carta['numero'] = numeroCarta;
-  return carta;
+  console.log(cartasArray);
+  return cartasArray;
 }
 
-const renderCarta = (carta) => {
+const renderCarta = (cartasArray) => {
   const display = document.querySelector('#display-cartas');
 
-  const divCarta = document.createElement('div');
-  divCarta.classList.add('carta');
+  for (let i = 0; i < cartasArray.length; i++) {
+    const divCarta = document.createElement('div');
+    divCarta.classList.add('carta');
 
-  //Div de los simbolos
-  for (let i = 0; i < 2; i++) {
-    const divTipoCarta = document.createElement('div');
-    const posicion = i == 0 ? 'tipo-carta--superior' : 'tipo-carta--inferior';
-    divTipoCarta.classList.add('tipo-carta', carta.clase, posicion);
-    divCarta.appendChild(divTipoCarta);
+    //Div de los simbolos
+    for (let j = 0; j < 2; j++) {
+      const divTipoCarta = document.createElement('div');
+      const posicion = j == 0 ? 'tipo-carta--superior' : 'tipo-carta--inferior';
+      divTipoCarta.classList.add('tipo-carta', cartasArray[i].clase, posicion);
+      divCarta.appendChild(divTipoCarta);
+    }
+
+    //Numero de carta
+    const spanNumero = document.createElement('span');
+    spanNumero.classList.add('numero-carta');
+    spanNumero.innerText = cartasArray[i].numero;
+    spanNumero.style.color = cartasArray[i].color;
+    divCarta.appendChild(spanNumero);
+
+    //Anadir div al display
+    display.appendChild(divCarta);
   }
-
-  //Numero de carta
-  const spanNumero = document.createElement('span');
-  spanNumero.classList.add('numero-carta');
-  spanNumero.innerText = carta.numero;
-  spanNumero.style.color = carta.color;
-  divCarta.appendChild(spanNumero);
-
-  //Anadir div al display
-  display.appendChild(divCarta);
 }
 
 const eventoClickGenerador = () => {
+  //reset display
   const displayViejo = document.querySelector('#display-cartas');
   document.body.removeChild(displayViejo);
-
   const nuevoDisplay = document.createElement('div');
   nuevoDisplay.id = 'display-cartas';
   nuevoDisplay.classList.add('container-carta');
   document.body.appendChild(nuevoDisplay);
 
-  renderCarta(generarCartaAleatoria());
+  const cantidadCartas = document.querySelector('#cantidad').value;
+  renderCarta(generarCartaAleatoria(cantidadCartas));
 }
 
 const generarNumerosInputRange = () => {
@@ -124,7 +135,7 @@ window.onload = function () {
   //asignar 
   generarNumerosInputRange();
 
-  renderCarta(generarCartaAleatoria());
+  renderCarta(generarCartaAleatoria(1));
 
   const generador = document.querySelector('#generador');
   generador.addEventListener('click', eventoClickGenerador);
