@@ -9,9 +9,10 @@ body {
 .container-carta {
     /* posicion */
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    gap: 1em;
     /* caja */
     height: 100%;
     width: 100%;
