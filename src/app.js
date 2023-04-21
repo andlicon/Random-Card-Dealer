@@ -21,6 +21,12 @@ const TIPO_CARTAS = [
   }
 ]
 
+const CONSTANTES_PROGRAMA = {
+  'width': null,
+  'height': null,
+  'cantidadCartas': 1
+}
+
 const getTipoCarta = (index) => {
   if (index >= TIPO_CARTAS.length || index < 0) {
     return null;
@@ -40,8 +46,9 @@ const convertirNumeroCartaValido = (numero) => {
   return numero;
 }
 
-const generarCartaAleatoria = (cantidad) => {
+const generarCartaAleatoria = () => {
   const cartasArray = [];
+  const cantidad = CONSTANTES_PROGRAMA.cantidadCartas;
 
   for (let i = 0; i < cantidad; i++) {
     const aleatorioTipoCarta = Math.floor(Math.random() * TIPO_CARTAS.length);
@@ -69,6 +76,13 @@ const renderCarta = (cartasArray) => {
   for (let i = 0; i < cartasArray.length; i++) {
     const divCarta = document.createElement('div');
     divCarta.classList.add('carta');
+
+    if (CONSTANTES_PROGRAMA.width != null) {
+      divCarta.style.width = CONSTANTES_PROGRAMA.width;
+    }
+    if (CONSTANTES_PROGRAMA.height != null) {
+      divCarta.style.width = CONSTANTES_PROGRAMA.height;
+    }
 
     //Div de los simbolos
     for (let j = 0; j < 2; j++) {
@@ -99,8 +113,7 @@ const eventoClickGenerador = () => {
   nuevoDisplay.classList.add('container-carta');
   document.body.appendChild(nuevoDisplay);
 
-  const cantidadCartas = document.querySelector('#cantidad').value;
-  renderCarta(generarCartaAleatoria(cantidadCartas));
+  renderCarta(generarCartaAleatoria(CONSTANTES_PROGRAMA.cantidadCartas));
 }
 
 const generarNumerosInputRange = () => {
@@ -152,9 +165,11 @@ window.onload = function () {
   generarNumerosInputRange();
   inicializarInputsSoloNumeros();
 
-  renderCarta(generarCartaAleatoria(1));
+  renderCarta(generarCartaAleatoria());
 
   const generador = document.querySelector('#generador');
   generador.addEventListener('click', eventoClickGenerador);
+
+
 
 };
