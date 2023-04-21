@@ -1,32 +1,32 @@
-const CONSTANTES_CARTAS = [
+const TIPO_CARTAS = [
   {
-    'tipo': 'corazon',
+    'nombre': 'corazon',
     'color': 'red',
-    'imagen': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png'
+    'clase': 'tipo--corazon'
   },
   {
-    'tipo': 'trebol',
+    'nombre': 'trebol',
     'color': 'black',
-    'imagen' : 'https://cdn-icons-png.flaticon.com/512/105/105219.png'
+    'clase' : 'tipo--trebol'
   },
   {
-    'tipo': 'diamante',
+    'nombre': 'diamante',
     'color': 'red',
-    'imagen': 'https://images.emojiterra.com/google/android-nougat/512px/2666.png'
+    'clase': 'tipo--diamante'
   },
   {
-    'tipo': 'pica',
+    'nombre': 'pica',
     'color': 'black',
-    'imagen': 'https://images.emojiterra.com/openmoji/v13.1/512px/2660.png'
+    'clase': 'tipo--pica'
   }
 ]
 
 const getTipoCarta = (index) => {
-  if(index>=CONSTANTES_CARTAS.length || index<0) {
+  if(index>=TIPO_CARTAS.length || index<0) {
     return null;
   }
 
-  return CONSTANTES_CARTAS[index];
+  return TIPO_CARTAS[index];
 }
 
 const convertirNumeroCartaValido = (numero) => {
@@ -41,7 +41,7 @@ const convertirNumeroCartaValido = (numero) => {
 }
 
 const generarCartaAleatoria = () => {
-  const aleatorioTipoCarta = Math.floor(Math.random() * CONSTANTES_CARTAS.length);
+  const aleatorioTipoCarta = Math.floor(Math.random() * TIPO_CARTAS.length);
   const tipoCarta = getTipoCarta(aleatorioTipoCarta);
   
   const aleatorioNumeroCarta = Math.floor(Math.random() * 12)+1;
@@ -56,8 +56,34 @@ const generarCartaAleatoria = () => {
   return carta;
 }
 
+const renderCarta = (carta) => {
+  const display = document.querySelector('#display-cartas');
+
+  const divCarta = document.createElement('div');
+  divCarta.classList.add('carta');
+
+  //Div de los simbolos
+  for(let i=0; i<2; i++) {
+    const divTipoCarta = document.createElement('div');
+    const posicion = i==0 ? 'tipo-carta--superior' : 'tipo-carta--inferior';
+    divTipoCarta.classList.add('tipo-carta', carta.clase, posicion);
+    divCarta.appendChild(divTipoCarta);
+  }
+
+  //Numero de carta
+  const spanNumero = document.createElement('span');
+  spanNumero.classList.add('numero-carta');
+  spanNumero.innerText = carta.numero;
+  spanNumero.style.color = carta.color;
+  divCarta.appendChild(spanNumero);
+
+  //Anadir div al display
+  display.appendChild(divCarta);
+}
+
 
 window.onload = function() {
   //write your code here
-  const carta = generarCartaAleatoria();
+  renderCarta(generarCartaAleatoria());
+
 };

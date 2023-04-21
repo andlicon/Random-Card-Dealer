@@ -1,11 +1,3 @@
-/*
-.carta--trebol {
-    background-image: URL('https://cdn-icons-png.flaticon.com/512/105/105219.png');
-}
-.carta--corazon {
-    background-image: URL('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png');
-}
-*/
 * {
     margin: 0;
     padding: 0;
@@ -46,18 +38,31 @@ body {
     /* caja */
     width: 4em;
     height: 4em;
+    /* estilos */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 4em;
 }
-
 .tipo-carta--superior {
     top: 1em;
     left: 1em;
 }
-
 .tipo-carta--inferior {
     bottom: 1em;
     right: 1em;
 }
-
+.tipo--trebol {
+    background-image: URL('https://cdn-icons-png.flaticon.com/512/105/105219.png');
+}
+.tipo--corazon {
+    background-image: URL('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png');
+}
+.tipo--diamante {
+    background-image: URL('https://images.emojiterra.com/google/android-nougat/512px/2666.png');
+}
+.tipo--pica {
+    background-image: URL('https://images.emojiterra.com/openmoji/v13.1/512px/2660.png');
+}
 .numero-carta {
     font-size: 3rem;
     font-weight: bold;
