@@ -160,8 +160,20 @@ const inicializarInputsSoloNumeros = () => {
   }
 }
 
-const updateConstantes = () => {
+const updateConstantes = (e) => {
+  const target = e.target
 
+  if (target.id == 'cantidad') {
+    CONSTANTES_PROGRAMA.cantidadCartas = target.value;
+  }
+  if (target.id == 'width') {
+    CONSTANTES_PROGRAMA.width = target.value;
+  }
+  if (target.id == 'height') {
+    CONSTANTES_PROGRAMA.height = target.value;
+  }
+
+  console.log(CONSTANTES_PROGRAMA);
 }
 
 window.onload = function () {
@@ -169,26 +181,14 @@ window.onload = function () {
   generarNumerosInputRange();
   inicializarInputsSoloNumeros();
 
-  renderCarta(generarCartaAleatoria());
-
   //cambiar constantes del programa
   const contenedorModificadores = document.querySelector('#menuOpciones');
-  contenedorModificadores.addEventListener('change', (e) => {
-    const target = e.target
-
-    if (target.id == 'cantidad') {
-      CONSTANTES_PROGRAMA.cantidadCartas = target.value;
-    }
-    if (target.id == 'width') {
-      CONSTANTES_PROGRAMA.width = target.value;
-    }
-    if (target.id == 'height') {
-      CONSTANTES_PROGRAMA = target.value;
-    }
-  });
+  contenedorModificadores.addEventListener('change', (e) => updateConstantes(e));
 
   //Generar cartas al click
   const generador = document.querySelector('#generador');
   generador.addEventListener('click', eventoClickGenerador);
 
+  //generar primera carta
+  renderCarta(generarCartaAleatoria());
 };
