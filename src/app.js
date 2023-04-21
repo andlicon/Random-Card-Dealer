@@ -95,11 +95,14 @@ const eventoClickGenerador = () => {
 
 const generarNumerosInputRange = () => {
   const rangesArray = document.querySelectorAll('input[type="range"]');
-  const indicadoresArray = document.querySelectorAll('input[type="range"] + .range-indicadores');
+  // const indicadoresArray = document.querySelectorAll('input[type="range"] + .range-indicadores');
 
   for (let i = 0; i < rangesArray.length; i++) {
     const range = rangesArray[i];
-    const indicador = indicadoresArray[i];
+    const papaRange = range.parentNode;
+    //Creando indicador
+    const indicador = document.createElement('div');
+    indicador.classList.add('range-indicadores');
 
     const inicio = Number(range.min);
     const cantidad = Number(range.max);
@@ -112,11 +115,13 @@ const generarNumerosInputRange = () => {
       indicador.appendChild(spanIndicador);
     }
 
+    papaRange.appendChild(indicador);
+
   }
 }
 
 window.onload = function () {
-  //llenar 
+  //asignar 
   generarNumerosInputRange();
 
   renderCarta(generarCartaAleatoria());
