@@ -60,7 +60,6 @@ const generarCartaAleatoria = (cantidad) => {
     cartasArray.push(carta);
   }
 
-  console.log(cartasArray);
   return cartasArray;
 }
 
@@ -131,9 +130,27 @@ const generarNumerosInputRange = () => {
   }
 }
 
+const inicializarInputsSoloNumeros = () => {
+  const inputsArray = document.querySelectorAll('input[data-type="number"]');
+
+  for (let i = 0; i < inputsArray.length; i++) {
+    inputsArray[i].addEventListener('keydown', (event) => {
+      const key = event.key;
+
+      if (!key.match(/[0-9]/)
+        && key != 'Backspace'
+        && !key.match('Arrow')
+        && key != 'Delete') {
+        event.preventDefault();
+      }
+    });
+  }
+}
+
 window.onload = function () {
-  //asignar 
+  //Inicializando los elementos 
   generarNumerosInputRange();
+  inicializarInputsSoloNumeros();
 
   renderCarta(generarCartaAleatoria(1));
 
