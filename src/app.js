@@ -24,7 +24,9 @@ const TIPO_CARTAS = [
 const CONSTANTES_PROGRAMA = {
   'width': '',
   'height': '',
-  'cantidadCartas': 1
+  'cantidadCartas': 1,
+  'segundoActual': 10,
+  'segundoSetteado': 10
 }
 
 const getTipoCarta = (index) => {
@@ -100,14 +102,29 @@ const renderCarta = (cartasArray) => {
   }
 }
 
-const eventoClickGenerador = () => {
-  //reset display
+const displayReiniciado = () => {
   const displayViejo = document.querySelector('#display-cartas');
   document.body.removeChild(displayViejo);
   const nuevoDisplay = document.createElement('div');
   nuevoDisplay.id = 'display-cartas';
   nuevoDisplay.classList.add('container-carta');
-  document.body.appendChild(nuevoDisplay);
+
+  return nuevoDisplay;
+}
+
+const actualizarTemporizador = () => {
+  const divDecenaSegundo = document.querySelector('#decimaSegundo');
+  const divUnidadSegundo = document.querySelector('#unidadSegundo');
+
+  divDecenaSegundo.innerText = "0";
+  divUnidadSegundo.innerText = CONSTANTES_PROGRAMA.segundoActual;
+}
+
+const eventoGeneradorCarta = () => {
+  //reiniciar display
+  document.body.appendChild(displayReiniciado());
+  //reiniciar temporizador
+  reiniciarTemporizador();
 
   renderCarta(generarCartaAleatoria(CONSTANTES_PROGRAMA.cantidadCartas));
 }
@@ -170,6 +187,16 @@ const updateConstantes = (e) => {
 
 }
 
+const reiniciarTemporizador = () => {
+  CONSTANTES_PROGRAMA.segundoActual = CONSTANTES_PROGRAMA.segundoSetteado;
+
+  const divDecenaSegundo = document.querySelector('#decimaSegundo');
+  const divUnidadSegundo = document.querySelector('#unidadSegundo');
+
+  divDecenaSegundo.innerText = '1';
+  divUnidadSegundo.innerText = '0';
+}
+
 window.onload = function () {
   //Inicializando los elementos 
   generarNumerosInputRange();
@@ -181,8 +208,24 @@ window.onload = function () {
 
   //Generar cartas al click
   const generador = document.querySelector('#generador');
-  generador.addEventListener('click', eventoClickGenerador);
+  generador.addEventListener('click', () => {
+    eventoGeneradorCarta();
+    actualizarTemporizador();
+  });
 
   //generar primera carta
-  renderCarta(generarCartaAleatoria());
+  eventoGeneradorCarta();
+
+  setInterval(() => {
+    //temporizador
+    CONSTANTES_PROGRAMA.segundoActual--;
+
+    if (CONSTANTES_PROGRAMA.segundoActual <= 0) {
+      eventoGeneradorCarta();
+    }
+    else {
+      actualizarTemporizador();
+    }
+
+  }, 1000);
 };
