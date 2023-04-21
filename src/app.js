@@ -210,7 +210,7 @@ window.onload = function () {
   const generador = document.querySelector('#generador');
   generador.addEventListener('click', () => {
     eventoGeneradorCarta();
-    actualizarTemporizador();
+    //actualizarTemporizador();
   });
 
   //generar primera carta

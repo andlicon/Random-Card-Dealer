@@ -6,6 +6,8 @@
 body {
     background-color: green;
     padding-top: 1em;
+    background-image: url('https://png.pngtree.com/background/20210716/original/pngtree-cute-teenage-background-mobile-phone-wallpaper-green-shamrock-picture-image_1353100.jpg');
+    background-size: 50%;
 }
 .container-carta {
     /* posicion */
@@ -104,8 +106,9 @@ input[type="range"] + .range-indicadores {
     align-items: center;
     gap: .5em;
     /* estilo */
-    border: 2px solid black;
-    background-color: brown;
+    border: 2px solid rgb(23, 192, 23);
+    border-radius: 2em;
+    background-color: black;
 }
 .segundo {
     /* caja */
@@ -116,9 +119,11 @@ input[type="range"] + .range-indicadores {
     justify-content: center;
     align-items: center;
     /* estilo */
-    background-color: white;
+    background-color: black;
     border: 1px solid black;
     /* letra */
-    font-weight: bold;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 900;
     font-size: 2em;
+    color: rgb(23, 192, 23);
 }
