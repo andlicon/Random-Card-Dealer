@@ -22,7 +22,10 @@ export const TIPO_CARTAS = [
 ];
 
 export const getTipoCarta = (index) => {
-    if (index >= TIPO_CARTAS.length || index < 0) {
+    if (index >= TIPO_CARTAS.length
+        || index < 0
+        || index == undefined
+        || !Number.isInteger(index)) {
         return null;
     }
 
