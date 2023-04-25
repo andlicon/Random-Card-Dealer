@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Professional Boilerplate for Vanilla.js Web Apps",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "webpack-dev-server --mode development --port 3000 --open",
     "build": "webpack --mode development --verbose --colors --display-error-details",
