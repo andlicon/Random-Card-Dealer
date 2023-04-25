@@ -33,8 +33,10 @@ export const getTipoCarta = (index) => {
 };
 
 export const convertirNumeroCartaValido = (numero) => {
-
-    if (numero <= 0 || numero > 12) return null; //invalido
+    if (numero <= 0
+        || numero > 12
+        || numero == undefined
+        || !Number.isInteger(numero)) return null; //invalido
     if (numero == 1) return 'A';
     if (numero == 10) return 'J'
     if (numero == 11) return 'Q'
