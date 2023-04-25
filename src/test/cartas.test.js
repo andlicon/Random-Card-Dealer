@@ -79,4 +79,49 @@ describe('Funcion: convertirNumeroCartaValido', () => {
         const result = convertirNumeroCartaValido(12);
         expect(result).toBe('K');
     });
-})
+});
+
+describe('Funcion generarCartaAleatoria', () => {
+    test('Debe retornar la cantidad de cartas indicadas', () => {
+        const result = generarCartaAleatoria(4);
+        expect(result.length).toBe(4);
+    });
+    test('Debe retornar la cantidad de cartas indicadas', () => {
+        const result = generarCartaAleatoria(0);
+        expect(result.length).toBe(0);
+    });
+    test('Cantidad negativa debe ser tratada como si fuese positiva', () => {
+        const result = generarCartaAleatoria(-4);
+        expect(result.length).toBe(4);
+    });
+    test('Null debe retornar null', () => {
+        const result = generarCartaAleatoria(null);
+        expect(result).toBe(null);
+    });
+    test('Undefined debe retornar null', () => {
+        const result = generarCartaAleatoria(undefined);
+        expect(result).toBe(null);
+    });
+    test('Un indice distinto de number debe retornar null', () => {
+        const result = generarCartaAleatoria('a');
+        expect(result).toBe(null);
+    });
+    test('Las cartas deben tener todos los atributos validos', () => {
+        const result = generarCartaAleatoria(4);
+        const ATRIBUTOS_VALIDOS = ["nombre", "color", "clase", "numero"];
+        for (let i = 0; i < result.length; i++) {
+            const currentAtributos = Object.keys(result[i]).toString();
+            expect(currentAtributos).toBe(ATRIBUTOS_VALIDOS.toString());
+        }
+    });
+    test('Los atributos de las cartas deben tener valores', () => {
+        const result = generarCartaAleatoria(4);
+        const ATRIBUTOS_VALIDOS = ['nombre', 'color', 'clase', 'numero'];
+        for (let i = 0; i < result.length; i++) {
+            for (let j = 0; j < ATRIBUTOS_VALIDOS.length; j++) {
+                const currentAtributo = ATRIBUTOS_VALIDOS[j];
+                expect(result[i][currentAtributo]).not.toBe(undefined);
+            }
+        }
+    });
+});

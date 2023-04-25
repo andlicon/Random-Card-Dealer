@@ -117,13 +117,13 @@ const updateConstantes = (e) => {
   const target = e.target
 
   if (target.id == 'cantidad') {
-    CONSTANTES_PROGRAMA.cantidadCartas = target.value;
+    CONSTANTES_PROGRAMA.cantidadCartas = Number(target.value);
   }
   if (target.id == 'width') {
-    CONSTANTES_PROGRAMA.width = target.value;
+    CONSTANTES_PROGRAMA.width = Number(target.value);
   }
   if (target.id == 'height') {
-    CONSTANTES_PROGRAMA.height = target.value;
+    CONSTANTES_PROGRAMA.height = Number(target.value);
   }
 
 }

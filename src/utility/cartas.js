@@ -46,18 +46,18 @@ export const convertirNumeroCartaValido = (numero) => {
 };
 
 export const generarCartaAleatoria = (cantidad) => {
+    if (cantidad == null
+        || cantidad == undefined
+        || !Number.isInteger(cantidad)) return null;
+
     const cartasArray = [];
 
-    for (let i = 0; i < cantidad; i++) {
+    for (let i = 0; i < Math.abs(cantidad); i++) {
         const aleatorioTipoCarta = Math.floor(Math.random() * TIPO_CARTAS.length);
         const tipoCarta = getTipoCarta(aleatorioTipoCarta);
 
         const aleatorioNumeroCarta = Math.floor(Math.random() * 12) + 1;
         const numeroCarta = convertirNumeroCartaValido(aleatorioNumeroCarta);
-
-        if (tipoCarta == null || numeroCarta == null) {
-            return 'ERROR AL GENERAR CARTA';
-        }
 
         const carta = tipoCarta;
         carta['numero'] = numeroCarta;
